@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mi Agenda Escolar</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="notebook-container">
+        <header>
+            <h1>📓 Bienvenid@, <%= alumno %></h1>
+            
+            <div class="header-buttons" style="margin-top: 15px;">
+                <a href="/pendientes?nombre=<%= encodeURIComponent(alumno) %>" class="btn-pendientes">📑 Ver mi Libreta de Pendientes</a>
+            </div>
+        </header>
+
+        <section class="form-section">
+            <form action="/agregar-tarea?nombre=<%= encodeURIComponent(alumno) %>" method="POST" class="task-form">
+                <h3>✍️ Anotar Nueva Tarea</h3>
+                
+                <div class="input-group">
+                    <label for="titulo">Título de la tarea:</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej. Guía de estudio" maxlength="100" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="materia">Materia (Solo letras):</label>
+                    <input type="text" id="materia" name="materia" placeholder="Ej. Matemáticas" pattern="[A-Za-zÀ-ÿ\s]+" title="La materia solo debe contener letras" maxlength="50" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="descripcion">Descripción (Máx. 250 caracteres):</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Detalles de la tarea..." maxlength="250" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="fecha_entrega">Fecha de entrega:</label>
+                    <input type="date" id="fecha_entrega" name="fecha_entrega" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Guardar Tarea</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

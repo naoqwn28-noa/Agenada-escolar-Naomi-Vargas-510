@@ -1,0 +1,94 @@
+body {
+    background-color: #e0f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.notebook-container {
+    background-color: #ffffff;
+    width: 450px;
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #00bcd4;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(#f1f1f1 1px, transparent 1px);
+    background-size: 100% 25px;
+}
+
+.login-header, header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.notebook-icon {
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    color: #0277bd;
+    font-size: 26px;
+    margin: 10px 0;
+}
+
+p {
+    color: #555;
+    font-size: 14px;
+}
+
+.form-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #8bc34a;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    color: #33691e;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input, .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c5e1a5;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+.input-group input:focus, .input-field:focus {
+    outline: none;
+    border-color: #7cb342;
+    background-color: #fff;
+}
+
+.btn-comenzar, .btn-submit {
+    width: 100%;
+    background-color: #7cb342;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-comenzar:hover, .btn-submit:hover {
+    background-color: #689f38;
+}

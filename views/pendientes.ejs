@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pendientes - Mi Agenda Escolar</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="notebook-container">
+        <header>
+            <h1>📓 Libreta de Pendientes de <%= alumno %></h1>
+            
+            <!-- Botones de navegación superiores -->
+            <div class="header-buttons">
+                <a href="/dashboard?nombre=<%= encodeURIComponent(alumno) %>" class="btn-volver">⬅️ Volver al Inicio</a>
+                <a href="/dashboard?nombre=<%= encodeURIComponent(alumno) %>" class="btn-agregar-nav">✍️ Anotar Nueva Tarea</a>
+            </div>
+        </header>
+
+        <!-- Barra de Filtros por Materia -->
+        <section class="filter-section">
+            <form action="/pendientes" method="GET" class="filter-form">
+                <input type="hidden" name="nombre" value="<%= alumno %>">
+                <label for="materia">🔍 Filtrar por materia:</label>
+                <select name="materia" id="materia" onchange="this.form.submit()">
+                    <option value="">Todas las materias</option>
+                    <option value="Matemáticas" <%= materiaSeleccionada === 'Matemáticas' ? 'selected' : '' %>>Matemáticas</option>
+                    <option value="Español" <%= materiaSeleccionada === 'Español' ? 'selected' : '' %>>Español</option>
+                    <option value="Historia" <%= materiaSeleccionada === 'Historia' ? 'selected' : '' %>>Historia</option>
+                    <option value="Ciencias" <%= materiaSeleccionada === 'Ciencias' ? 'selected' : '' %>>Ciencias</option>
+                    <option value="Inglés" <%= materiaSeleccionada === 'Inglés' ? 'selected' : '' %>>Inglés</option>
+                    <option value="Otro" <%= materiaSeleccionada === 'Otro' ? 'selected' : '' %>>Otro</option>
+                </select>
+            </form>
+        </section>
+
+        <section class="tasks-section">
+            <h2>Tus proyectos y tareas por entregar:</h2>
+            <div class="card-grid">
+                <% if (tareas.length > 0) { %>
+                    <% tareas.forEach(tarea => { %>
+                        <div class="task-card">
+                            <div class="task-info">
+                                <h3><%= tarea.titulo %></h3>
+                                <span class="badge"><%= tarea.materia %></span>
+                                <p><%= tarea.descripcion %></p>
+                                <p class="date">📅 Entrega: <%= tarea.fecha_entrega ? tarea.fecha_entrega.toISOString().split('T')[0] : 'Sin fecha' %></p>
+                            </div>
+                            
+                            <!-- Botones de palomita y tache para eliminar la tarea -->
+                            <div class="task-actions">
+                                <form action="/eliminar-tarea/<%= tarea.id %>?nombre=<%= encodeURIComponent(alumno) %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-check" title="Marcar como hecha y eliminar">✔️</button>
+                                </form>
+                                
+                                <form action="/eliminar-tarea/<%= tarea.id %>?nombre=<%= encodeURIComponent(alumno) %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-delete" title="Eliminar tarea">❌</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p class="empty-message">No hay tareas pendientes para esta selección. ¡Todo al día! 🎉</p>
+                <% } %>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
